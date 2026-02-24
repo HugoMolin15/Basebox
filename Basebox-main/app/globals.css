@@ -1,0 +1,549 @@
+@import "tailwindcss";
+
+@theme {
+  /* font */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* website colors */
+  --color-brand-normal: #3b82f6;
+  --color-brand-light: #60a5fa;
+  --color-brand-dark: #2563eb;
+
+  --color-black: #000000;
+  --color-black-light: #0f172a;
+  --color-black-lighter: #334155;
+
+  --color-white: #ffffff;
+  --color-white-light: #f8fafc;
+  --color-white-dark: #e2e8f0;
+
+  /* text fonts and weights */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+  --font-size-7xl: 4.5rem;
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+
+
+  /* border radius */
+  --radius-s: 0.5rem;
+  --radius-m: 1rem;
+  --radius-l: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-2xl: 2.5rem;
+  --radius-3xl: 3rem;
+  --radius-4xl: 3.5rem;
+  --radius-5xl: 4rem;
+  --radius-6xl: 4.5rem;
+  --radius-7xl: 5rem;
+  --radius-8xl: 5.5rem;
+  --radius-9xl: 6rem;
+  --radius-10xl: 6.5rem;
+  --radius-pill: 9999px;
+
+  /* Section Constraints */
+  --width-section-narrow: 800px;
+  --width-section-standard: 1240px;
+  --width-section-wide: 1440px;
+  --width-section-full: 100%;
+
+  /* NOTE: spacing tokens are intentionally in :root (not here) to avoid
+     overriding Tailwind v4's default numeric spacing scale */
+
+  /* Image Constraints */
+  --img-s: 320px;
+  --img-m: 600px;
+  --img-l: 1240px;
+  --img-xl: 1440px;
+
+  /* aspect ratios */
+  --aspect-bento-tall: 3 / 4;
+  --aspect-bento-wide: 16 / 9;
+  --aspect-bento-square: 1 / 1;
+
+  /* button components */
+  --button-px-sm: 0.75rem;
+  --button-py-sm: 0.375rem;
+  --button-text-sm: 0.8125rem;
+  --button-px-md: 1.25rem;
+  --button-py-md: 0.625rem;
+  --button-text-md: 0.875rem;
+  --button-px-lg: 2rem;
+  --button-py-lg: 0.875rem;
+  --button-text-lg: 1rem;
+
+}
+
+.border-black-thin {
+  border: 1px solid var(--color-black);
+}
+
+.border-gray-thin {
+  border: 1px solid var(--color-white-dark);
+}
+
+/* --- 7. SYSTEM VARIABLES (USING NEW TOKENS) --- */
+:root {
+  --background: var(--color-neutral-0);
+  --foreground: var(--color-neutral-900);
+  --muted: var(--color-neutral-500);
+  --muted-foreground: var(--color-neutral-400);
+
+  --library-card: var(--color-neutral-50);
+  --library-border: var(--color-neutral-200);
+  --library-glass: rgba(255, 255, 255, 0.7);
+
+  --spacing-library-gap: 1rem;
+
+  /* Custom spacing tokens (as plain CSS vars, NOT in @theme to preserve Tailwind's default scale) */
+  --spacing-s: 0.5rem;
+  --spacing-m: 1rem;
+  --spacing-l: 2rem;
+  --spacing-xl: 2.5rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 3.5rem;
+  --spacing-4xl: 4rem;
+  --spacing-5xl: 4.5rem;
+  --spacing-6xl: 5rem;
+  --spacing-7xl: 5.5rem;
+  --spacing-8xl: 6rem;
+  --spacing-9xl: 6.5rem;
+  --spacing-10xl: 7rem;
+}
+
+.dark {
+  --background: var(--color-neutral-950);
+  --foreground: var(--color-neutral-100);
+  --muted: var(--color-neutral-500);
+  --muted-foreground: var(--color-neutral-600);
+
+  --library-card: rgba(255, 255, 255, 0.03);
+  --library-border: rgba(255, 255, 255, 0.1);
+  --library-glass: rgba(255, 255, 255, 0.05);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --spacing-library-gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --spacing-library-gap: 2.5rem;
+  }
+}
+
+/* --- DEBUG BORDERS --- */
+:root {
+  /* Set to 1px to show borders, 0px to hide */
+  --show-debug-borders: 0px;
+}
+
+.debug-border {
+  position: relative;
+}
+
+.debug-border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 var(--show-debug-borders) #ef4444 !important;
+  z-index: 9999;
+}
+
+/* --- 7. BASE STYLES --- */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- 8. BUTTON PRIMITIVES --- */
+.btn-primary {
+  background-color: var(--color-brand-normal);
+  color: white;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-brand-dark);
+}
+
+.btn-primary:active {
+  transform: scale(0.95);
+}
+
+.btn-secondary {
+  background-color: var(--color-black-dark);
+  color: white;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-black-normal);
+}
+
+.btn-secondary:active {
+  transform: scale(0.95);
+}
+
+.btn-white {
+  background-color: white;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-white:hover {
+  background-color: #f8fafc;
+}
+
+.btn-white:active {
+  transform: scale(0.95);
+}
+
+.dark .btn-white {
+  background-color: white;
+  color: black;
+}
+
+.dark .btn-white:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.btn-dark {
+  background-color: #0f172a;
+  color: white;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-dark:hover {
+  background-color: black;
+}
+
+.btn-dark:active {
+  transform: scale(0.95);
+}
+
+.btn-glass {
+  background: var(--library-glass);
+  color: var(--foreground);
+  border: 1px solid var(--library-border);
+  transition: all 0.2s;
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+}
+
+.btn-glass:hover {
+  background: var(--library-card);
+}
+
+.btn-glass:active {
+  transform: scale(0.95);
+}
+
+.btn-pill {
+  border-radius: var(--radius-pill) !important;
+}
+
+.btn-sm {
+  padding: var(--button-py-sm) var(--button-px-sm);
+  font-size: var(--button-text-sm);
+  border-radius: var(--radius-s);
+}
+
+.btn-md {
+  padding: var(--button-py-md) var(--button-px-md);
+  font-size: var(--button-text-md);
+  border-radius: 0.75rem;
+}
+
+.btn-lg {
+  padding: var(--button-py-lg) var(--button-px-lg);
+  font-size: var(--button-text-lg);
+  border-radius: var(--radius-m);
+}
+
+/* --- 10. TYPOGRAPHY --- */
+.heading-sm {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.025em;
+}
+
+.heading-md {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.025em;
+}
+
+.heading-lg {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-extrabold);
+  letter-spacing: -0.05em;
+}
+
+.heading-xl {
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-weight-black);
+  letter-spacing: -0.05em;
+}
+
+.text-status-bold {
+  font-size: 10px;
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.text-status-medium {
+  font-size: 11px;
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* --- 11. IMAGE VARIANTS --- */
+
+/* Base style for all image containers (internal use or helper) */
+.img-base {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: color-mix(in srgb, var(--library-card) 50%, transparent);
+}
+
+/* 1. Glass Image */
+.img-glass {
+  border: 1px solid var(--library-border);
+  border-radius: var(--radius-library-md);
+  background: var(--library-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 2. Soft Image */
+.img-soft {
+  border-radius: var(--radius-library-lg);
+  border: none;
+  background: color-mix(in srgb, var(--library-card) 80%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 3. Sharp Image */
+.img-sharp {
+  border-radius: 0;
+  border: 2px solid var(--library-border);
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.dark .img-sharp {
+  background: #18181b;
+}
+
+/* 4. Glow Image */
+.img-glow {
+  border-radius: var(--radius-library-md);
+  border: 1px solid color-mix(in srgb, var(--color-brand-primary) 30%, transparent);
+  background: color-mix(in srgb, var(--color-brand-primary) 5%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 5. Outline Image */
+.img-outline {
+  border-radius: var(--radius-library-md);
+  border: 2px solid #cbd5e1;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.dark .img-outline {
+  border-color: #334155;
+}
+
+/* --- 10. COMPONENT PRIMITIVES --- */
+
+/* 1. The Glass Card (Works best on dark/colored backgrounds) */
+
+
+/* 2. The "Clean White" Card (Now with a visible gray border) */
+
+
+/* 3. The "Outline" Card (Using a stronger border color) */
+
+
+/* Special fix for Outline Card in Dark Mode */
+
+
+/* --- 12. FORM PRIMITIVES --- */
+
+/* Standard Input & Textarea */
+
+
+
+
+/* Checkbox Primitive */
+
+
+/* The custom checkmark (pseudo-element) */
+
+
+/* --- FORM PRIMITIVES --- */
+
+/* Standard Input Field */
+.lib-input {
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--color-white-dark);
+  border-radius: var(--radius-s);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lib-input::placeholder {
+  color: var(--color-black-lighter);
+  opacity: 0.4;
+}
+
+.lib-input:focus {
+  border-color: color-mix(in srgb, var(--color-white-dark) 60%, black);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-white-dark) 20%, transparent);
+}
+
+/* Custom Checkbox */
+.lib-checkbox {
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  min-width: 1.25rem;
+  min-height: 1.25rem;
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
+  background-color: var(--background);
+  border: 1px solid var(--color-white-dark);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.lib-checkbox:hover {
+  border-color: color-mix(in srgb, var(--color-white-dark) 80%, black);
+}
+
+.lib-checkbox:checked {
+  background-color: var(--color-brand-normal);
+  border-color: color-mix(in srgb, var(--color-white-dark) 60%, black);
+}
+
+/* The "Check" Icon using a CSS mask */
+.lib-checkbox::before {
+  content: "";
+  width: 0.65rem;
+  height: 0.65rem;
+  transform: scale(0);
+  transition: 150ms transform cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: inset 1rem 1rem white;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.lib-checkbox:checked::before {
+  transform: scale(1);
+}
+
+
+
+
+/* Scrollbar Removal */
+* {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+*::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Shiki Line Numbers */
+pre code {
+  display: grid !important;
+  counter-reset: step;
+  counter-increment: step 0;
+}
+
+pre .line::before {
+  content: counter(step);
+  counter-increment: step;
+  width: 1.5rem;
+  margin-right: 2rem;
+  display: inline-block;
+  text-align: right;
+  color: #858585;
+  user-select: none;
+}
+
+/* --- 15. RADIX KEYFRAMES --- */
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+
+  to {
+    height: 0;
+  }
+}
