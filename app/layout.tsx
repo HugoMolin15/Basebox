@@ -34,7 +34,7 @@ export default function RootLayout({
         ) : (
           /* DASHBOARD MODE: Persistent Sidebar and Navbar */
           <div className="flex h-screen w-full overflow-hidden">
-            <div className="w-64 flex flex-col border-r border-zinc-200 shrink-0">
+            <div className="w-64 flex flex-col border-gray-thin shrink-0">
               <Navbar />
               <LibrarySidebar />
             </div>

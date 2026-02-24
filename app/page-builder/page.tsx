@@ -85,7 +85,7 @@ function SortableRow({ comp, index, total }: { comp: PlacedComponent; index: num
                 {/* Delete */}
                 <button
                     onClick={() => removeComponent(comp.instanceId)}
-                    className="p-1.5 rounded hover:bg-red-50 text-zinc-400 hover:text-red-500 transition-all"
+                    className="p-1.5 rounded hover:bg-red-50 text-zinc-400 hover:text-red-500 transition-all cursor-pointer"
                     title="Remove component"
                 >
                     <Trash2 size={14} />
@@ -387,7 +387,7 @@ Then open [http://localhost:3000](http://localhost:3000).
                     {components.length > 0 && (
                         <button
                             onClick={clearAll}
-                            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg text-zinc-500 hover:text-red-500 hover:bg-red-50 transition-all border border-zinc-200"
+                            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg text-zinc-500 hover:text-red-500 hover:bg-red-50 transition-all border border-zinc-200 cursor-pointer"
                         >
                             <Trash size={12} />
                             Clear all
@@ -401,7 +401,7 @@ Then open [http://localhost:3000](http://localhost:3000).
                             'flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold rounded-lg transition-all border',
                             components.length === 0
                                 ? 'opacity-40 cursor-not-allowed bg-zinc-100 border-zinc-200 text-zinc-500'
-                                : 'bg-zinc-900 text-white border-zinc-900 hover:opacity-90 shadow-sm',
+                                : 'bg-zinc-900 text-white border-zinc-900 hover:opacity-90 shadow-sm cursor-pointer',
                         )}
                     >
                         {exporting ? <Loader2 size={12} className="animate-spin" /> : <Download size={12} />}
@@ -413,10 +413,10 @@ Then open [http://localhost:3000](http://localhost:3000).
                         target="_blank"
                         rel="noopener noreferrer"
                         className={cn(
-                            'flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold rounded-lg transition-all border',
+                            'flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold rounded-lg transition-all border cursor-pointer',
                             components.length === 0
                                 ? 'opacity-40 pointer-events-none bg-zinc-100 border-zinc-200 text-zinc-500'
-                                : 'bg-brand-primary text-white border-brand-primary hover:opacity-90 shadow-sm',
+                                : 'bg-[var(--color-brand-normal)] text-white border-[var(--color-brand-normal)] hover:opacity-90 shadow-sm',
                         )}
                     >
                         <ExternalLink size={12} />
@@ -473,17 +473,17 @@ function ComponentPicker() {
             <div className="px-4 pt-4 pb-3 border-b border-zinc-200">
                 <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-3">Components</p>
                 <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={13} />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={14} />
                     <input
                         type="text"
                         placeholder="Search..."
                         value={search}
                         onChange={e => setSearch(e.target.value)}
-                        className="w-full pl-8 pr-7 py-2 bg-zinc-50 border border-zinc-200 rounded-lg text-sm outline-none focus:border-brand-primary/50 transition-all text-zinc-700 placeholder:text-zinc-400"
+                        className="lib-search-input"
                     />
                     {search && (
-                        <button onClick={() => setSearch('')} className="absolute right-2 top-1/2 -translate-y-1/2 p-0.5">
-                            <X size={12} className="text-zinc-400" />
+                        <button onClick={() => setSearch('')} className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-library-card/80 rounded-[var(--radius-s)]">
+                            <X size={12} className="text-muted-foreground" />
                         </button>
                     )}
                 </div>
@@ -502,18 +502,18 @@ function ComponentPicker() {
                                 {items.map(item => (
                                     <div
                                         key={item.id}
-                                        className="flex items-center justify-between gap-2 px-2 py-2 rounded-lg hover:bg-zinc-50 group transition-all"
+                                        className="flex items-center justify-between gap-2 px-2 py-2 rounded-lg group"
                                     >
-                                        <span className="text-sm text-zinc-600 truncate group-hover:text-zinc-900 transition-colors">
+                                        <span className="text-sm text-zinc-600 truncate">
                                             {item.name}
                                         </span>
                                         <button
                                             onClick={() => handleAdd(item.id, item.name)}
                                             className={cn(
-                                                'shrink-0 flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold transition-all',
+                                                'shrink-0 flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-bold transition-all cursor-pointer',
                                                 added === item.id
                                                     ? 'bg-green-100 text-green-600'
-                                                    : 'bg-zinc-100 text-zinc-500 hover:bg-brand-primary hover:text-white',
+                                                    : 'bg-zinc-100 text-zinc-500 hover:bg-[var(--color-brand-normal)] hover:text-[var(--color-white)]',
                                             )}
                                             title={`Add ${item.name}`}
                                         >

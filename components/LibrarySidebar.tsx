@@ -35,10 +35,9 @@ export function LibrarySidebar() {
                 <Link
                     href="/page-builder"
                     className={cn(
-                        'flex items-center gap-2.5 w-full px-3 py-2.5 rounded-lg text-sm font-bold transition-all border',
-                        isPageBuilder
-                            ? 'bg-brand-primary text-white border-brand-primary shadow-sm'
-                            : 'bg-brand-primary/8 text-brand-primary border-brand-primary/20 hover:bg-brand-primary/15'
+                        'flex items-center gap-2.5 w-full px-3 py-2 border border-[var(--library-border)] bg-[var(--library-card)] text-sm font-medium text-muted-foreground transition-all outline-none',
+                        'rounded-[var(--radius-s)] hover:bg-[var(--color-white-dark)] hover:text-[var(--color-black-lighter)]',
+                        isPageBuilder && 'bg-[var(--color-white-dark)] text-[var(--color-brand-normal)] font-semibold'
                     )}
                 >
                     <LayoutTemplate size={15} />
@@ -55,10 +54,10 @@ export function LibrarySidebar() {
                         placeholder="Search..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full pl-9 pr-8 py-2 bg-library-card border border-library-border rounded-button text-sm outline-none transition-all text-foreground placeholder:text-muted-foreground/50 focus:border-brand-primary/50"
+                        className="lib-search-input"
                     />
                     {searchQuery && (
-                        <button onClick={() => setSearchQuery('')} className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-library-card/80 rounded-md">
+                        <button onClick={() => setSearchQuery('')} className="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-library-card/80 rounded-[var(--radius-s)]">
                             <X size={12} className="text-muted-foreground" />
                         </button>
                     )}
@@ -77,7 +76,7 @@ export function LibrarySidebar() {
 
                         return (
                             <div key={category} className="flex flex-col gap-2">
-                                <h3 className="text-[10px] font-bold uppercase tracking-[0.15em] text-muted-foreground px-3">
+                                <h3 className="text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-400 px-3">
                                     {category.replace('-', ' ')}
                                 </h3>
                                 <div className="flex flex-col gap-1">
@@ -92,10 +91,10 @@ export function LibrarySidebar() {
                                                 href={href}
                                                 scroll={false} // Prevents main window jump
                                                 className={cn(
-                                                    "text-sm px-3 py-2 rounded-button transition-all flex items-center justify-between",
+                                                    "text-sm px-3 py-2 rounded-[var(--radius-s)] transition-all flex items-center justify-between",
                                                     isActive
-                                                        ? "bg-brand-primary/10 text-brand-primary font-semibold"
-                                                        : "text-muted-foreground hover:bg-library-card hover:text-foreground"
+                                                        ? "bg-[var(--color-white-dark)] text-[var(--color-brand-normal)] font-semibold"
+                                                        : "text-muted-foreground hover:bg-[var(--color-white-dark)] hover:text-[var(--color-black-lighter)]"
                                                 )}
                                             >
                                                 {item.name}
