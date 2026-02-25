@@ -183,7 +183,7 @@ function MobileMenu({ open, children, className, ...props }: MobileMenuProps) {
         <div
             id="mobile-menu"
             className={cn(
-                'bg-background',
+                'bg-white',
                 'fixed top-16 right-0 bottom-0 left-0 z-40 flex flex-col overflow-hidden lg:hidden',
             )}
         >
@@ -269,9 +269,8 @@ export function Navbar6() {
     return (
         <div className="w-full relative flex flex-col">
             <header
-                className={cn('fixed top-0 z-50 w-full transition-all duration-300', {
-                    'bg-background/80 backdrop-blur-xl': scrolled && !open,
-                    'bg-background': open,
+                className={cn('fixed top-0 z-50 w-full transition-all duration-300 bg-white', {
+                    'shadow-sm': scrolled && !open,
                 })}
             >
                 <nav className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-6">
@@ -281,7 +280,7 @@ export function Navbar6() {
                         </Link>
                         <NavigationMenu
                             className="hidden lg:flex"
-                            viewportClassName="translate-y-6 bg-background/90 backdrop-blur-xl border border-gray-thin rounded-[var(--radius-s)]"
+                            viewportClassName="translate-y-6 bg-white border border-gray-thin rounded-[var(--radius-s)] shadow-lg"
                         >
                             <NavigationMenuList>
                                 <NavigationMenuItem>
@@ -332,7 +331,7 @@ export function Navbar6() {
                     </div>
                     <div className="hidden items-center gap-3 lg:flex">
                         <Link href={SETTINGS.actions.secondary.href}>
-                            <button className="btn-secondary btn-md btn-pill">{SETTINGS.actions.secondary.text}</button>
+                            <button className="btn-secondary btn-md btn-pill" style={{ color: 'var(--color-black)' }}>{SETTINGS.actions.secondary.text}</button>
                         </Link>
                         <Link href={SETTINGS.actions.primary.href}>
                             <button className="btn-primary btn-md btn-pill">{SETTINGS.actions.primary.text}</button>
@@ -391,7 +390,7 @@ export function Navbar6() {
                     </NavigationMenu>
                     <div className="flex flex-col gap-3 mt-8 pb-12 w-full shrink-0">
                         <Link href={SETTINGS.actions.secondary.href} className="w-full">
-                            <button className="btn-secondary btn-md btn-pill w-full">{SETTINGS.actions.secondary.text}</button>
+                            <button className="btn-secondary btn-md btn-pill w-full" style={{ color: 'var(--color-black)' }}>{SETTINGS.actions.secondary.text}</button>
                         </Link>
                         <Link href={SETTINGS.actions.primary.href} className="w-full">
                             <button className="btn-primary btn-md btn-pill w-full">{SETTINGS.actions.primary.text}</button>

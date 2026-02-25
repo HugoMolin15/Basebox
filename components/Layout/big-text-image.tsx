@@ -29,7 +29,7 @@ export function BigTextImage({
             Transform complex operations into <strong className="text-foreground not-italic">simple, repeatable actions</strong> that scale with your business needs.
         </p>
     ),
-    imageSrc = "https://i.pinimg.com/1200x/e6/90/01/e69001a816bda50b18e21aa520ff5a2f.jpg",
+    imageSrc = "https://i.pinimg.com/1200x/39/fa/62/39fa62821f86b475f8faed3ab38cb124.jpg",
     imageAlt = "Efficiency Visualization",
     imageVariant = "none",
     visualContent,

@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { exportPageProject } from '@/lib/actions';
+import { Navbar } from '@/components/Navbar';
 
 // ─── Category labels ─────────────────────────────────────────────────────────
 const CATEGORIES: Category[] = [
@@ -44,7 +45,7 @@ function SortableRow({ comp, index, total }: { comp: PlacedComponent; index: num
             ref={setNodeRef}
             style={style}
             className={cn(
-                'group flex flex-col border border-zinc-200 rounded-xl overflow-hidden bg-white transition-shadow',
+                'group flex flex-col border border-zinc-200 rounded-[var(--radius-s)] overflow-hidden bg-white transition-shadow',
                 isDragging ? 'shadow-2xl z-50 opacity-80' : 'shadow-sm',
             )}
         >
@@ -364,7 +365,7 @@ Then open [http://localhost:3000](http://localhost:3000).
     return (
         <div className="flex-1 flex flex-col min-h-0 bg-zinc-50">
             {/* Canvas toolbar */}
-            <div className="flex items-center justify-between px-6 py-4 bg-white border-b border-zinc-200 shrink-0">
+            <div className="flex items-center justify-between px-6 h-[70px] bg-white border-b border-zinc-200 shrink-0">
                 <div className="flex items-center gap-3">
                     <Layers size={18} className="text-zinc-500 shrink-0" />
                     <span className="font-bold text-zinc-800 text-sm shrink-0">Canvas</span>
@@ -469,7 +470,7 @@ function ComponentPicker() {
     };
 
     return (
-        <aside className="w-72 shrink-0 flex flex-col border-r border-zinc-200 bg-white overflow-hidden">
+        <aside className="w-full flex-1 flex flex-col bg-white overflow-hidden border-r border-zinc-200">
             <div className="px-4 pt-4 pb-3 border-b border-zinc-200">
                 <p className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-3">Components</p>
                 <div className="relative">
@@ -535,8 +536,12 @@ function ComponentPicker() {
 export default function PageBuilderPage() {
     return (
         <PageBuilderProvider>
-            <div className="flex h-full w-full overflow-hidden">
-                <ComponentPicker />
+            <div className="flex h-screen w-full overflow-hidden">
+                {/* Left column: Navbar + ComponentPicker — mirrors the w-64 sidebar on the main page */}
+                <div className="w-64 flex flex-col shrink-0">
+                    <Navbar />
+                    <ComponentPicker />
+                </div>
                 <Canvas />
             </div>
         </PageBuilderProvider>

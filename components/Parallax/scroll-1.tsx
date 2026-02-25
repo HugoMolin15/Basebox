@@ -104,33 +104,7 @@ export function SmoothParallaxScroll() {
     const imgs = SETTINGS.images;
 
     return (
-        <div className="w-full min-h-screen bg-background">
-            {/* Introductory Header */}
-            <header className="h-[50vh] flex flex-col items-center justify-center text-center px-6">
-                <h1
-                    className="mb-4"
-                    style={{ color: 'var(--color-black)', fontSize: 'var(--font-size-6xl)', fontWeight: 'var(--font-weight-black)' }}
-                >
-                    {SETTINGS.title}
-                </h1>
-                <p
-                    className="max-w-lg mx-auto"
-                    style={{ color: 'var(--color-black-lighter)', fontSize: 'var(--font-size-lg)', fontWeight: 'var(--font-weight-medium)', opacity: 0.7 }}
-                >
-                    {SETTINGS.subtitle}
-                </p>
-                <div
-                    className="mt-12 w-8 h-12 border-gray-thin rounded-full flex items-start justify-center p-2"
-                >
-                    <motion.div
-                        animate={{ y: [0, 16, 0] }}
-                        transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-                        className="w-1 h-2 rounded-full"
-                        style={{ backgroundColor: 'var(--color-white-dark)' }}
-                    />
-                </div>
-            </header>
-
+        <div className="w-full bg-background">
             {/* Parallax Gallery Container */}
             <div
                 ref={galleryContainer}
@@ -141,27 +115,6 @@ export function SmoothParallaxScroll() {
                 <Column images={[imgs[6], imgs[7], imgs[8]]} y={y3} className="-top-[45%]" />
                 <Column images={[imgs[9], imgs[10], imgs[11]]} y={y4} className="-top-[75%]" />
             </div>
-
-            {/* Semantic Footer Spacer */}
-            <footer className="h-screen flex items-center justify-center bg-white">
-                <div className="text-center group cursor-default">
-                    <span
-                        className="uppercase tracking-widest transition-colors"
-                        style={{ color: 'var(--color-black-lighter)', fontSize: 'var(--font-size-xs)', fontWeight: 'var(--font-weight-black)', opacity: 0.5 }}
-                    >
-                        Discover more inspiration below
-                    </span>
-                    <div className="mt-4 flex gap-2 justify-center">
-                        {[1, 2, 3].map(i => (
-                            <div
-                                key={i}
-                                className="w-1.5 h-1.5 rounded-full"
-                                style={{ backgroundColor: 'var(--color-white-dark)' }}
-                            />
-                        ))}
-                    </div>
-                </div>
-            </footer>
         </div>
     );
 }

@@ -26,19 +26,15 @@ export function LibrarySidebar() {
         );
     });
 
-    const isPageBuilder = pathname === '/page-builder';
-
     return (
-        <aside className="w-full flex-1 flex flex-col bg-background overflow-hidden">
+        <aside className="w-full flex-1 flex flex-col bg-background overflow-hidden border-r border-[var(--color-white-dark)]">
             {/* Page Builder CTA */}
             <div className="px-4 pt-4 pb-2">
                 <Link
                     href="/page-builder"
-                    className={cn(
-                        'flex items-center gap-2.5 w-full px-3 py-2 border border-[var(--library-border)] bg-[var(--library-card)] text-sm font-medium text-muted-foreground transition-all outline-none',
-                        'rounded-[var(--radius-s)] hover:bg-[var(--color-white-dark)] hover:text-[var(--color-black-lighter)]',
-                        isPageBuilder && 'bg-[var(--color-white-dark)] text-[var(--color-brand-normal)] font-semibold'
-                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2.5 w-full px-3 py-2 border border-[var(--library-border)] bg-[var(--library-card)] text-sm font-medium text-muted-foreground transition-all outline-none rounded-[var(--radius-s)] hover:bg-[var(--color-white-dark)] hover:text-[var(--color-black-lighter)]"
                 >
                     <LayoutTemplate size={15} />
                     Page Builder

@@ -44,7 +44,7 @@ export function Navbar3() {
     }, [isOpen, isHoveringCard]);
 
     return (
-        <div className="w-full relative flex flex-col items-center">
+        <div className="w-full">
             {/* Expanding Card Container */}
             <motion.nav
                 layout
@@ -56,7 +56,7 @@ export function Navbar3() {
                     mass: 0.8
                 }}
                 className={cn(
-                    "fixed top-6 md:top-12 z-[100] w-[92%] overflow-hidden border-gray-thin bg-white/90 backdrop-blur-xl",
+                    "fixed top-6 md:top-12 left-1/2 -translate-x-1/2 z-[100] w-[92%] overflow-hidden border-gray-thin bg-white/90 backdrop-blur-xl",
                     isOpen
                         ? "md:w-[1100px] p-8 md:p-14 h-auto"
                         : "md:w-[850px] rounded-full h-16 px-10 flex items-center justify-between"

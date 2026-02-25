@@ -19,7 +19,7 @@ export function MediumTextImage({
     title = <>Start your journey <br className="hidden md:block" /> with confidence.</>,
     description = "Unlock the potential of your ideas with our comprehensive toolkit. From initial concept to final deployment, we provide the resources you need to succeed in a digital-first world.",
     ctaText = "Get Started",
-    imageSrc = "https://i.pinimg.com/1200x/79/ff/17/79ff17f6e2b2f8385ff63985e9fccbdb.jpg",
+    imageSrc = "https://i.pinimg.com/1200x/f2/07/0c/f2070ca40e6b6106386849db1044c9d0.jpg",
     imageAlt = "Visual Area",
     imageVariant = "soft",
     visualContent,

@@ -150,23 +150,7 @@ export function CardParallax() {
     });
 
     return (
-        <div className="w-full min-h-screen bg-background transition-colors">
-            {/* Semantic Header */}
-            <div className="py-24 px-6 text-center">
-                <h1
-                    className="tracking-tighter mb-4"
-                    style={{ color: 'var(--color-black)', fontSize: 'var(--font-size-6xl)', fontWeight: 'var(--font-weight-black)' }}
-                >
-                    {SETTINGS.title}
-                </h1>
-                <p
-                    className="max-w-lg mx-auto"
-                    style={{ color: 'var(--color-black-lighter)', fontSize: 'var(--font-size-lg)', fontWeight: 'var(--font-weight-medium)', opacity: 0.7 }}
-                >
-                    {SETTINGS.subtitle}
-                </p>
-            </div>
-
+        <div className="w-full bg-background transition-colors">
             <main ref={container} className="relative">
                 {SETTINGS.projects.map((project, i) => {
                     const targetScale = 1 - ((SETTINGS.projects.length - i) * 0.05);
@@ -182,18 +166,6 @@ export function CardParallax() {
                     );
                 })}
             </main>
-
-            {/* Outro context spacer */}
-            <div className="h-screen flex items-center justify-center">
-                <div className="text-center">
-                    <h3
-                        className="uppercase tracking-widest"
-                        style={{ color: 'var(--color-black-lighter)', fontSize: 'var(--font-size-sm)', fontWeight: 'var(--font-weight-bold)', opacity: 0.5 }}
-                    >
-                        End of Gallery
-                    </h3>
-                </div>
-            </div>
         </div>
     );
 }

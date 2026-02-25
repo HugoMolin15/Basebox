@@ -115,14 +115,13 @@ export function Navbar7() {
     }, []);
 
     return (
-        <div className="w-full relative flex flex-col">
-
+        <div className="w-full">
             <nav
                 className={cn(
-                    "fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-700 px-6",
+                    "fixed top-0 left-0 right-0 z-50 transition-all duration-700 px-6",
                     isScrolled
-                        ? "top-0 w-full rounded-none py-4 bg-white/80 backdrop-blur-xl border-b border-gray-thin"
-                        : "top-4 w-[95%] max-w-7xl rounded-full py-2.5 bg-transparent"
+                        ? "py-4 bg-white/80 backdrop-blur-xl"
+                        : "py-2.5 bg-transparent"
                 )}
             >
                 <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -165,7 +164,7 @@ export function Navbar7() {
                                             className="absolute top-full left-1/2 -translate-x-1/2 pt-6"
                                         >
                                             <div
-                                                className="bg-white border-gray-thin p-2 overflow-hidden"
+                                                className="bg-white shadow-lg p-2 overflow-hidden"
                                                 style={{ borderRadius: 'var(--radius-s)' }}
                                             >
                                                 {item.variant === "multi-column" ? (
@@ -391,8 +390,6 @@ export function Navbar7() {
                 )}
             </AnimatePresence>
 
-            {/* Spacer for Scroll Demo */}
-            <div className="h-[100vh] relative z-0" />
         </div>
     );
 }

@@ -41,7 +41,7 @@ export function Hero({
     visualContent
 }: HeroProps) {
     return (
-        <div className={cn("w-full debug-border bg-background relative overflow-hidden mt-20", className)}>
+        <div className={cn("w-full debug-border bg-background relative overflow-hidden mt-16", className)}>
 
             {/* Header Section */}
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-24 pb-16 text-center">

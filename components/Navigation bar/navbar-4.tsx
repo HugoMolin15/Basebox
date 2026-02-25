@@ -127,7 +127,7 @@ export function Navbar4() {
     const EXPANDED_RADIUS = 32;
 
     return (
-        <div className="w-full font-sans relative">
+        <div className="w-full">
             <div className="fixed top-0 left-0 right-0 z-[100] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 pointer-events-none">
                 <motion.header
                     initial={false}

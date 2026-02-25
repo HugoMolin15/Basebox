@@ -22,19 +22,19 @@ const defaultFeatures: ImageSelector1Feature[] = [
         id: 1,
         title: 'Outdoor Unit',
         description: 'Houses the compressor, condenser coil, and reversing valve, typically located outside the building for heat exchange.',
-        imageSrc: 'https://i.pinimg.com/1200x/80/3c/c2/803cc24726e912cfdcf79e9b80a60ff0.jpg',
+        imageSrc: 'https://i.pinimg.com/1200x/f2/07/0c/f2070ca40e6b6106386849db1044c9d0.jpg',
     },
     {
         id: 2,
         title: 'Indoor Unit',
         description: 'The heat pump component responsible for distributing conditioned air throughout the living or working space.',
-        imageSrc: 'https://i.pinimg.com/1200x/2e/fc/7f/2efc7f0c0d539654cb0e52ca392db7bd.jpg',
+        imageSrc: 'https://i.pinimg.com/1200x/39/fa/62/39fa62821f86b475f8faed3ab38cb124.jpg',
     },
     {
         id: 3,
         title: 'Ducted Indoor Unit',
         description: 'Distribute conditioned air throughout buildings via a network of ducts, ensuring consistent and efficient climate control.',
-        imageSrc: 'https://i.pinimg.com/1200x/4e/69/eb/4e69eb837afae4cf69e2a929a2e984e6.jpg',
+        imageSrc: 'https://i.pinimg.com/1200x/b1/1f/ec/b11fec719d9329e484e888ce13519bed.jpg',
     }
 ];
 

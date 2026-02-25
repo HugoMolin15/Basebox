@@ -51,6 +51,7 @@ export function BentoGrid({ cards = DEFAULT_CARDS }: { cards?: BentoCard[] }) {
 
                     {cards.map((card, idx) => {
                         const isHorizontal = card.className?.includes('is-horizontal');
+                        const isTall = card.className?.includes('row-span-2');
 
                         return (
                             <div
@@ -108,11 +109,11 @@ export function BentoGrid({ cards = DEFAULT_CARDS }: { cards?: BentoCard[] }) {
                                     )}
                                 </div>
 
-                                {/* Image area - fixed heights for all cards including horizontal */}
+                                {/* Image area */}
                                 <div
                                     className={cn(
-                                        "relative overflow-hidden mt-6 border-gray-thin bg-muted/50",
-                                        isHorizontal ? "w-full lg:w-[55%] h-64" : "w-full h-48"
+                                        "relative overflow-hidden mt-auto border-gray-thin bg-muted/50",
+                                        isHorizontal ? "w-full lg:w-[55%] h-64" : `w-full flex-1 min-h-[10rem] ${isTall ? 'max-h-72 lg:max-h-none' : 'max-h-72'}`
                                     )}
                                     style={{ borderRadius: 'var(--radius-s)' }}
                                 >

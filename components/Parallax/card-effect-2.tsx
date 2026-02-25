@@ -150,23 +150,7 @@ export function CardStackParallax() {
     });
 
     return (
-        <div className="w-full min-h-screen bg-background text-foreground">
-            {/* Contextual Header */}
-            <div className="py-24 px-6 text-center">
-                <h1
-                    className="tracking-tighter mb-4"
-                    style={{ color: 'var(--color-black)', fontSize: 'var(--font-size-6xl)', fontWeight: 'var(--font-weight-black)' }}
-                >
-                    {SETTINGS.title}
-                </h1>
-                <p
-                    className="max-w-lg mx-auto"
-                    style={{ color: 'var(--color-black-lighter)', fontSize: 'var(--font-size-lg)', fontWeight: 'var(--font-weight-medium)', opacity: 0.7 }}
-                >
-                    {SETTINGS.subtitle}
-                </p>
-            </div>
-
+        <div className="w-full bg-background text-foreground">
             <main ref={container} className="relative">
                 {SETTINGS.projects.map((project, i) => {
                     // Slight scale down for cards in the background to create depth
@@ -183,9 +167,6 @@ export function CardStackParallax() {
                     );
                 })}
             </main>
-
-            {/* Outro context spacer */}
-            <div className="h-screen" />
         </div>
     );
 }

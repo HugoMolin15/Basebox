@@ -29,7 +29,7 @@ export function BigImageText({
             Rewrite the playbook on mass communications — speak <strong className="text-foreground not-italic">directly to your power users</strong> with precision and intent.
         </p>
     ),
-    imageSrc = "https://i.pinimg.com/736x/05/7f/52/057f52b2f3c143618af90056f97c0d9a.jpg",
+    imageSrc = "https://i.pinimg.com/1200x/f2/07/0c/f2070ca40e6b6106386849db1044c9d0.jpg",
     imageAlt = "Personalization Visualization",
     imageVariant = "none",
     visualContent,

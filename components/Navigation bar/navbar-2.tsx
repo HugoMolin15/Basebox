@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     ChevronDown,
@@ -79,7 +79,7 @@ export function ExpandableNavbar() {
     const [isMobileFeaturesOpen, setIsMobileFeaturesOpen] = useState(false);
 
     return (
-        <div className="w-full bg-white relative">
+        <div className="w-full">
             <div className="fixed top-6 left-0 right-0 mx-auto z-50 w-[94%] md:w-auto md:max-w-3xl flex flex-col items-center">
 
                 <motion.div
@@ -200,7 +200,7 @@ export function ExpandableNavbar() {
                                                     href={feature.href}
                                                     className={cn(
                                                         "group relative p-5 flex items-center gap-5 transition-all duration-300 cursor-pointer overflow-hidden",
-                                                        "bg-white/0 hover:bg-white-light border-gray-thin hover:border-transparent text-left"
+                                                        "bg-white/0 hover:bg-white-light text-left"
                                                     )}
                                                     style={{ borderRadius: 'var(--radius-2xl)' }}
                                                 >

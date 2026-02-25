@@ -19,7 +19,7 @@ export function MediumImageText({
     title = <>Design that speaks <br className="hidden md:block" /> louder than words.</>,
     description = "We create digital experiences that blend aesthetic beauty with functional precision. Every pixel is crafted to tell a story, engaging your users from the first glance to the final interaction.",
     ctaText = "Get Started",
-    imageSrc = "/img_1.png",
+    imageSrc = "https://i.pinimg.com/1200x/f2/07/0c/f2070ca40e6b6106386849db1044c9d0.jpg",
     imageAlt = "Visual Showcase",
     imageVariant = "soft",
     visualContent,
@@ -39,7 +39,7 @@ export function MediumImageText({
                 >
                     {visualContent || (
                         <ImagePrimitive
-                            src="https://i.pinimg.com/1200x/79/ff/17/79ff17f6e2b2f8385ff63985e9fccbdb.jpg"
+                            src="https://i.pinimg.com/1200x/f2/07/0c/f2070ca40e6b6106386849db1044c9d0.jpg"
                             alt={imageAlt}
                             imageVariant="none"
                             aspectRatio="none"

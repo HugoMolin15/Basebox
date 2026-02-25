@@ -101,29 +101,7 @@ export function TextParallaxScroll() {
     });
 
     return (
-        <div className="w-full min-h-screen bg-white overflow-hidden">
-            {/* Introductory Header */}
-            <div className="h-[40vh] flex flex-col items-center justify-center text-center px-6">
-                <span
-                    className="mb-4 tracking-[0.3em] uppercase"
-                    style={{ color: 'var(--color-black-lighter)', fontSize: 'var(--font-size-xs)', fontWeight: 'var(--font-weight-black)', opacity: 0.5 }}
-                >
-                    Interactive Motion
-                </span>
-                <h1
-                    className="tracking-tighter mb-4"
-                    style={{ color: 'var(--color-black)', fontSize: 'var(--font-size-6xl)', fontWeight: 'var(--font-weight-black)' }}
-                >
-                    {SETTINGS.title}
-                </h1>
-                <p
-                    className="max-w-lg mx-auto"
-                    style={{ color: 'var(--color-black-lighter)', fontSize: 'var(--font-size-lg)', fontWeight: 'var(--font-weight-medium)', opacity: 0.7 }}
-                >
-                    {SETTINGS.subtitle}
-                </p>
-            </div>
-
+        <div className="w-full bg-white overflow-hidden">
             {/* Parallax Content Section */}
             <main ref={container} className="relative flex flex-col gap-8 md:gap-12 py-20 bg-white">
                 {SETTINGS.slides.map((slide, i) => (
@@ -134,28 +112,6 @@ export function TextParallaxScroll() {
                     />
                 ))}
             </main>
-
-            {/* Outro context spacer */}
-            <div className="h-[60vh] flex flex-col items-center justify-center p-12">
-                <div className="max-w-2xl text-center">
-                    <h2
-                        className="mb-6 leading-tight"
-                        style={{ color: 'var(--color-black)', fontSize: 'var(--font-size-4xl)', fontWeight: 'var(--font-weight-extrabold)' }}
-                    >
-                        Experience smooth, high-performance web animations.
-                    </h2>
-                    <p
-                        className="mb-10 leading-relaxed"
-                        style={{ color: 'var(--color-black-lighter)', fontSize: 'var(--font-size-lg)', fontWeight: 'var(--font-weight-medium)', opacity: 0.7 }}
-                    >
-                        Built with Framer Motion and Next.js, this effect combines typography
-                        and imagery into a seamless interactive experience that responds to user scroll.
-                    </p>
-                    <button className="btn-primary btn-lg btn-pill inline-flex items-center justify-center px-10">
-                        View Documentation
-                    </button>
-                </div>
-            </div>
         </div>
     );
 }

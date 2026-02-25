@@ -41,7 +41,7 @@ export function Hero({
     return (
         <section
             style={{ maxWidth: 'var(--width-section-standard)' }}
-            className={cn("debug-border min-h-screen mt-20",
+            className={cn("debug-border min-h-screen mt-16",
                 "grid grid-cols-1 lg:grid-cols-2 gap-[var(--spacing-library-gap)] items-start mb-8 md:mb-32 px-8 md:px-16 lg:px-24 py-12 md:py-20 mx-auto pt-32 bg-background",
                 className
             )}>
