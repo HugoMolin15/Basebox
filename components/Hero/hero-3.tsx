@@ -170,7 +170,7 @@ function LogosSection() {
 
 export function Hero() {
     return (
-        <main className="w-full debug-border min-h-screen bg-white overflow-hidden flex flex-col items-center justify-center">
+        <main className="w-full debug-border min-h-screen mt-16 bg-white overflow-hidden flex flex-col items-center justify-center">
             <section className="mx-auto w-full max-w-5xl relative px-4 flex-1 flex flex-col justify-center">
                 {/* No shades */}
 

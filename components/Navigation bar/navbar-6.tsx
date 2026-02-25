@@ -123,13 +123,24 @@ const SETTINGS = {
 // --- HOOKS ---
 function useScroll(threshold: number) {
     const [scrolled, setScrolled] = React.useState(false);
+    const [isVisible, setIsVisible] = React.useState(true);
+    const lastScrollY = React.useRef(0);
 
     const onScroll = React.useCallback(() => {
-        setScrolled(window.scrollY > threshold);
+        const currentScrollY = window.scrollY;
+        setScrolled(currentScrollY > threshold);
+        if (currentScrollY < 80) {
+            setIsVisible(true);
+        } else if (currentScrollY > lastScrollY.current) {
+            setIsVisible(false);
+        } else {
+            setIsVisible(true);
+        }
+        lastScrollY.current = currentScrollY;
     }, [threshold]);
 
     React.useEffect(() => {
-        window.addEventListener('scroll', onScroll);
+        window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
     }, [onScroll]);
 
@@ -137,7 +148,7 @@ function useScroll(threshold: number) {
         onScroll();
     }, [onScroll]);
 
-    return scrolled;
+    return { scrolled, isVisible };
 }
 
 function MobileNavAccordion({ title, openDefault = false, children }: { title: string, openDefault?: boolean, children: React.ReactNode }) {
@@ -253,7 +264,7 @@ function ListItem({
 // --- MAIN COMPONENT ---
 export function Navbar6() {
     const [open, setOpen] = React.useState(false);
-    const scrolled = useScroll(10);
+    const { scrolled, isVisible } = useScroll(10);
 
     React.useEffect(() => {
         if (open) {
@@ -272,6 +283,7 @@ export function Navbar6() {
                 className={cn('fixed top-0 z-50 w-full transition-all duration-300 bg-white', {
                     'shadow-sm': scrolled && !open,
                 })}
+                style={{ transform: isVisible ? 'translateY(0)' : 'translateY(-100%)' }}
             >
                 <nav className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-6">
                     <div className="flex items-center gap-6">

@@ -188,16 +188,16 @@ export function StatsSection4() {
                         {SETTINGS.stats.map((stat, index) => (
                             <div key={index} className="flex flex-col gap-1 md:gap-2">
                                 <HyperText
-                                    className="tracking-tighter leading-none"
-                                    style={{ color: 'var(--color-black)', fontSize: 'var(--font-size-7xl)', fontWeight: 'var(--font-weight-extrabold)' }}
+                                    className="tracking-tighter leading-none text-4xl sm:text-5xl md:text-6xl xl:text-7xl"
+                                    style={{ color: 'var(--color-black)', fontWeight: 'var(--font-weight-extrabold)' }}
                                     triggerInView={isInView}
                                     animateOnHover={false}
                                 >
                                     {stat.value}
                                 </HyperText>
                                 <span
-                                    className="line-clamp-1"
-                                    style={{ color: 'var(--color-black-lighter)', fontSize: 'var(--font-size-base)', fontWeight: 'var(--font-weight-normal)' }}
+                                    className="line-clamp-1 text-xs sm:text-sm md:text-base"
+                                    style={{ color: 'var(--color-black-lighter)', fontWeight: 'var(--font-weight-normal)' }}
                                 >
                                     {stat.label}
                                 </span>

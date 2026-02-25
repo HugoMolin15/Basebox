@@ -27,7 +27,10 @@ const SETTINGS = {
 
 export function Navbar5() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const lastScrollY = useRef(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
+    const [scrolled, setScrolled] = useState(false);
 
     // Background Hover Setup
     useEffect(() => {
@@ -77,10 +80,33 @@ export function Navbar5() {
         return () => window.removeEventListener("keydown", handleEsc);
     }, [isMenuOpen]);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            setScrolled(currentScrollY > 20);
+            if (currentScrollY < 80) {
+                setIsVisible(true);
+            } else if (currentScrollY > lastScrollY.current) {
+                setIsVisible(false);
+            } else {
+                setIsVisible(true);
+            }
+            lastScrollY.current = currentScrollY;
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
         <div ref={containerRef} className="w-full relative">
 
-            <header className="fixed top-0 left-0 w-full z-50 px-6 lg:px-12 py-6 flex items-center justify-between pointer-events-none">
+            <header
+                className={cn(
+                    "fixed top-0 left-0 w-full z-50 px-6 lg:px-12 py-6 flex items-center justify-between pointer-events-none transition-all duration-300",
+                    scrolled && !isMenuOpen && "bg-white/90 backdrop-blur-xl shadow-sm"
+                )}
+                style={{ transform: isVisible ? 'translateY(0)' : 'translateY(-100%)' }}
+            >
                 <Link href="#" className={cn("z-50 pointer-events-auto transition-all duration-300 group/logo", isMenuOpen && "opacity-0 md:opacity-100")}>
                     <Box
                         className="size-8 transition-colors duration-300"

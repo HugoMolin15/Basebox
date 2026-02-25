@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     ChevronDown,
@@ -78,9 +78,31 @@ export function ExpandableNavbar() {
     const [isFeaturesOpen, setIsFeaturesOpen] = useState(false);
     const [isMobileFeaturesOpen, setIsMobileFeaturesOpen] = useState(false);
 
+    const lastScrollY = useRef(0);
+    const [isVisible, setIsVisible] = useState(true);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY < 80) {
+                setIsVisible(true);
+            } else if (currentScrollY > lastScrollY.current) {
+                setIsVisible(false);
+            } else {
+                setIsVisible(true);
+            }
+            lastScrollY.current = currentScrollY;
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
         <div className="w-full">
-            <div className="fixed top-6 left-0 right-0 mx-auto z-50 w-[94%] md:w-auto md:max-w-3xl flex flex-col items-center">
+            <div
+                className="fixed top-6 left-0 right-0 mx-auto z-50 w-[94%] md:w-auto md:max-w-3xl flex flex-col items-center transition-transform duration-300"
+                style={{ transform: (isVisible || isMobileMenuOpen || isFeaturesOpen) ? 'translateY(0)' : 'translateY(-200%)' }}
+            >
 
                 <motion.div
                     initial={false}

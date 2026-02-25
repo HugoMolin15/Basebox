@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     ChevronDown,
@@ -126,9 +126,31 @@ export function Navbar4() {
     const PILL_RADIUS = 36; // half of 72px height
     const EXPANDED_RADIUS = 32;
 
+    const lastScrollY = useRef(0);
+    const [isVisible, setIsVisible] = useState(true);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY < 80) {
+                setIsVisible(true);
+            } else if (currentScrollY > lastScrollY.current) {
+                setIsVisible(false);
+            } else {
+                setIsVisible(true);
+            }
+            lastScrollY.current = currentScrollY;
+        };
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
         <div className="w-full">
-            <div className="fixed top-0 left-0 right-0 z-[100] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 pointer-events-none">
+            <div
+                className="fixed top-0 left-0 right-0 z-[100] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 pointer-events-none transition-transform duration-300"
+                style={{ transform: isVisible ? 'translateY(0)' : 'translateY(-100%)' }}
+            >
                 <motion.header
                     initial={false}
                     animate={{

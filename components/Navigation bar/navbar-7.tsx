@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import {
     Menu, X, ChevronDown,
@@ -106,11 +106,23 @@ export function Navbar7() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [expandedMobileItem, setExpandedMobileItem] = useState<string | null>(null);
 
+    const lastScrollY = useRef(0);
+    const [isVisible, setIsVisible] = useState(true);
+
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
+            const currentScrollY = window.scrollY;
+            setIsScrolled(currentScrollY > 20);
+            if (currentScrollY < 80) {
+                setIsVisible(true);
+            } else if (currentScrollY > lastScrollY.current) {
+                setIsVisible(false);
+            } else {
+                setIsVisible(true);
+            }
+            lastScrollY.current = currentScrollY;
         };
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
@@ -118,11 +130,12 @@ export function Navbar7() {
         <div className="w-full">
             <nav
                 className={cn(
-                    "fixed top-0 left-0 right-0 z-50 transition-all duration-700 px-6",
+                    "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6",
                     isScrolled
                         ? "py-4 bg-white/80 backdrop-blur-xl"
                         : "py-2.5 bg-transparent"
                 )}
+                style={{ transform: isVisible ? 'translateY(0)' : 'translateY(-100%)' }}
             >
                 <div className="max-w-7xl mx-auto flex items-center justify-between">
                     {/* Logo */}

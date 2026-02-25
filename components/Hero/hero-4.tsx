@@ -44,7 +44,7 @@ const SETTINGS = {
  */
 export function Hero() {
     return (
-        <section className="relative w-full min-h-screen flex flex-col bg-black border-none overflow-hidden">
+        <section className="relative w-full min-h-screen mt-16 flex flex-col bg-black border-none overflow-hidden">
             {/* Background Image Layer */}
             <div className="absolute inset-0 z-0">
                 <ImagePrimitive

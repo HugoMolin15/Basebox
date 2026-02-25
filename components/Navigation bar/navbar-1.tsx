@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X, ArrowRight, Box } from 'lucide-react';
 import { ImagePrimitive } from '@/components/Media/image-primitive';
@@ -37,11 +37,23 @@ export function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+    const lastScrollY = useRef(0);
+    const [isVisible, setIsVisible] = useState(true);
+
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
+            const currentScrollY = window.scrollY;
+            setScrolled(currentScrollY > 20);
+            if (currentScrollY < 80) {
+                setIsVisible(true);
+            } else if (currentScrollY > lastScrollY.current) {
+                setIsVisible(false);
+            } else {
+                setIsVisible(true);
+            }
+            lastScrollY.current = currentScrollY;
         };
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -70,8 +82,10 @@ export function Navbar() {
 
             {/* Navbar Container */}
             <nav className={cn(
-                "fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ease-in-out flex justify-center items-center pointer-events-none"
-            )}>
+                "fixed top-0 left-0 right-0 z-[100] transition-transform duration-300 ease-in-out flex justify-center items-center pointer-events-none"
+            )}
+                style={{ transform: isVisible ? 'translateY(0)' : 'translateY(-100%)' }}
+            >
                 <div className={cn(
                     "w-full transition-all duration-500 ease-in-out pointer-events-auto",
                     scrolled
