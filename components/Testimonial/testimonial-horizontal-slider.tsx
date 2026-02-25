@@ -52,8 +52,8 @@ const SETTINGS = {
     ]
 };
 
-const firstRow = SETTINGS.reviews.slice(0, SETTINGS.reviews.length / 2);
-const secondRow = SETTINGS.reviews.slice(SETTINGS.reviews.length / 2);
+// Both rows use the full review set so the track always fills the viewport
+const allReviews = SETTINGS.reviews;
 
 /**
  * Marquee Component
@@ -73,29 +73,21 @@ const Marquee = ({
     return (
         <div className={cn("flex w-full overflow-hidden", className)}>
             <motion.div
-                className="flex shrink-0 min-w-full"
-                style={{ gap: 'var(--spacing-l)' }}
-                initial={{ x: reverse ? "-50%" : "0%" }}
-                animate={{ x: reverse ? "0%" : "-50%" }}
+                className="flex shrink-0"
+                initial={{ x: reverse ? "-25%" : "0%" }}
+                animate={{ x: reverse ? "0%" : "-25%" }}
                 transition={{
                     duration: 30,
                     repeat: Infinity,
                     ease: "linear",
                 }}
-                onHoverStart={(e) => {
-                    if (pauseOnHover) {
-                        // This is a bit tricky with Framer Motion natively without controlling the animation state.
-                        // For a simple implementation, we'll keep it running.
-                    }
-                }}
             >
-                {/* Doubling content for seamless loop */}
-                <div className="flex shrink-0" style={{ gap: 'var(--spacing-l)' }}>
-                    {children}
-                </div>
-                <div className="flex shrink-0" style={{ gap: 'var(--spacing-l)' }}>
-                    {children}
-                </div>
+                {/* 4 copies ensures the track is always wider than any viewport */}
+                {[0, 1, 2, 3].map((i) => (
+                    <div key={i} className="flex shrink-0" style={{ gap: 'var(--spacing-l)', paddingRight: 'var(--spacing-l)' }}>
+                        {children}
+                    </div>
+                ))}
             </motion.div>
         </div>
     );
@@ -176,13 +168,13 @@ export function TestimonialSlider() {
             </div>
 
             <div className="relative flex w-full flex-col items-center justify-center gap-6 overflow-hidden">
-                <Marquee className="[--duration:40s]">
-                    {firstRow.map((review) => (
+                <Marquee>
+                    {allReviews.map((review) => (
                         <ReviewCard key={review.username} {...review} />
                     ))}
                 </Marquee>
-                <Marquee reverse className="[--duration:40s]">
-                    {secondRow.map((review) => (
+                <Marquee reverse>
+                    {allReviews.map((review) => (
                         <ReviewCard key={review.username} {...review} />
                     ))}
                 </Marquee>
